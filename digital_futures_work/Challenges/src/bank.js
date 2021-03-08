@@ -21,7 +21,6 @@ class Bank{
         this.account = account;
         this.amount = amount;
         this.date = date;
-        let d = this.date;
         if(this.account.toLowerCase() === "credit"){
             if(this.amount > this.credit_balance){
                 throw new Error('Insufficient funds.');
@@ -42,10 +41,19 @@ class Bank{
         }
     }
     accountStatement(){
-        console.log(this.statement);
+        const account = new printStatement(this.statement);
+        account.accountStatement();
     }
 }
 
+class printStatement{
+    constructor(statement){
+        this.statement = statement;
+    }
+    accountStatement(){
+        console.log(this.statement)
+    }
+}
 let account = new Bank();
 account.deposit('credit', 500, '25/12/2020');
 account.withdraw('credit', 250, '08/03/2021');
